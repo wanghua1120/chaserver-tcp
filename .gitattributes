@@ -1,0 +1,29 @@
+# Set default behaviour, in case users don't have core.autocrlf set.
+# This ensures that all files that git considers to be text will have normalized (LF)
+# line endings in the repository. The core.eol configuration variable controls which 
+# line endings git will use for normalized files in your working directory; the 
+# default is to use the native line ending for your platform.
+* text=auto
+
+#for this banner.txt, we need to have eol=lf
+src/main/resources/banner.txt    text eol=lf
+
+*.cs     text diff=csharp
+*.java   text diff=java
+*.html   text diff=html
+*.css    text
+*.js     text
+*.sql    text
+
+# Standard to msysgit
+*.doc	 diff=astextplain
+*.DOC	 diff=astextplain
+*.docx diff=astextplain
+*.DOCX diff=astextplain
+*.dot  diff=astextplain
+*.DOT  diff=astextplain
+*.pdf  diff=astextplain
+*.PDF	 diff=astextplain
+*.rtf	 diff=astextplain
+*.RTF	 diff=astextplain
+

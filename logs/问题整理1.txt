@@ -1,0 +1,49 @@
+﻿《问题整理》
+
+一、下面是日志的一部分，不是特别理解，需要提供帮助。
+
+（1）未知的命令编码：9021，这个命令一直出现，代表什么？
+=======================================================
+2019-04-25 09:57:04,320 [nioEventLoopGroup-3-1] DEBUG com.chada.ems.common.TrafficPackageReader - >>> rawText：##0086QN=20190425095755520;ST=91;CN=9021;PW=123456;MN=23040281003022;Flag=5;CP=&&Data=15BE&&C301
+2019-04-25 09:57:04,441 [nioEventLoopGroup-3-1] ERROR com.chada.ems.common.domain.traffic.TrafficPackage - 未知的命令编码：9021
+
+（2）指令里含有 GET http 请求，需要处理吗，如何处理？
+=======================================================
+2019-04-25 12:18:15,943 [nioEventLoopGroup-3-3] INFO  com.chada.ems.netty.StringServerHandler - >>> [123.160.232.35:49270] 上线
+2019-04-25 12:18:15,944 [nioEventLoopGroup-3-3] DEBUG com.chada.ems.common.TrafficPackageReader - >>> rawText：GET http://api.ipify.org/ HTTP/1.1
+Host: api.ipify.org
+Proxy-Authorization: Basic Og==
+Proxy-Connection: Keep-Alive
+User-Agent: Mozilla/5.01732016 Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:55.0) Gecko/20100101 Firefox/55.0
+Accept-Encoding: gzip, deflate, sdch
+Connection: keep-alive
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Accept-Language: zh-CN,zh;q=0.8
+
+2019-04-25 14:46:56,012 [nioEventLoopGroup-3-2] INFO  com.chada.ems.netty.StringServerHandler - >>> [139.162.83.10:50630] 上线
+2019-04-25 14:46:56,013 [nioEventLoopGroup-3-2] DEBUG com.chada.ems.common.TrafficPackageReader - >>> rawText：GET / HTTP/1.1
+Host: 212.64.79.192:8888
+User-Agent: Mozilla/5.0
+Accept-Encoding: gzip
+Connection: close
+
+（3）这台机器发的二进制数据，用 UTF-8 无法解析，是否用得其他编码方式？
+======================================================================
+2019-04-25 14:47:10,225 [nioEventLoopGroup-3-4] INFO  com.chada.ems.netty.StringServerHandler - >>> [139.162.83.10:57116] 上线
+2019-04-25 14:47:10,226 [nioEventLoopGroup-3-4] DEBUG com.chada.ems.common.TrafficPackageReader - >>> rawText： � +<M              
+(                                                                                                                                
+
+
+（4）这台机器发的二进制数据，用 UTF-8 无法解析，是否用得其他编码方式？
+======================================================================
+2019-04-25 20:51:03,376 [nioEventLoopGroup-3-1] INFO  com.chada.ems.netty.StringServerHandler - >>> [5.188.206.166:12692] 上线
+2019-04-25 20:51:03,376 [nioEventLoopGroup-3-1] DEBUG com.chada.ems.common.TrafficPackageReader - >>> rawText：  *%�     Cookie: mstshash=Test
+     
+2019-04-25 20:51:12,972 [nioEventLoopGroup-3-1] DEBUG com.chada.ems.common.TrafficPackageReader - >>> rawText：  %��d  �p�  �      $    �
+
+
+二、pdf文档
+（1）字段对照表 里 “SBxxx-RS、SBxxx-RT”这两个字段中的“xxx”为设备号，有意义吗这个值，业务上要用吗?
+
+

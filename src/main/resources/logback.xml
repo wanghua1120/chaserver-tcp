@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Chada Logback Configuration  -->
+
+<configuration>
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!--<charset>utf-8</charset> use native encoding for console -->
+            <pattern>%d [%t] %-5p %c - %m%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="chaLogFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--See also http://logback.qos.ch/manual/appenders.html#RollingFileAppender-->
+        <File>${CHASERVER_TCP_HOME}/chalogs/chaserver-tcp.log</File>
+        <encoder>
+            <charset>utf-8</charset>
+            <pattern>%d [%t] %-5p %c - %m%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <maxIndex>5</maxIndex>
+            <FileNamePattern>${CHASERVER_TCP_HOME}/chalogs/chaserver-tcp.log.%i</FileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>20MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+
+    <root level="INFO">
+        <appender-ref ref="stdout"/>
+        <appender-ref ref="chaLogFile"/>
+    </root>
+
+    <logger name="com.chada.ems" level="DEBUG"/>
+    <!-- print sql for mysql with paramters -->
+    <!--<logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="DEBUG"/>-->
+    <!-- banner is logged at info level -->
+    <logger name="org.springframework.boot.SpringApplication" level="INFO" />
+
+</configuration>

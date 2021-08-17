@@ -1,0 +1,31 @@
+## generic files to ignore
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
+
+## idea files to ignore
+.idea
+*.iml
+*.ipr
+*.iws
+
+/.settings
+/.classpath
+/.project
+/.springBeans
+/target
+/temp
+/src/main/webapp
+
+/.pydevproject
+/.factorypath
+
+/work
+/classes
+
+/out
+
+git.properties
+
